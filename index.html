@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Code Cave</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app">
+      <div id="topbar">
+
+        <button id="play" v-on:click="toggleRunning()">
+           <span v-if="!running">Play</span>
+           <span v-if="running">Pause</span>
+         </button>
+
+        <button id="exec" v-on:click="exec()" :disabled="running ? null : true">Execute</button>
+        <button id="save">Save</button>
+        <button id="open">Open</button>
+        <button id="load" v-on:click="load()">Load Samples</button>
+        <div id="freq-analyser"></div>
+
+        <button v-on:click="toggleSide()" id="settings" style="float:right;">Settings</button>
+      </div>
+      <div v-if="showSide" id="sidebar">
+        <h2>Settings</h2>
+      </div>
+      <div id="editor"></div>
+    </div>
+
+    <input type="file" id="file_load" multiple style="display: none; visibility: hidden;">
+  </body>
+  <script src="vendor/ace/ace.js"></script>
+  <script src="vendor/ace/theme-tomorrow.js"></script>
+  <script src="vendor/ace/mode-javascript.js"></script>
+  <script src="vendor/vue.js"></script>
+  <script src="vendor/p5/p5.js"></script>
+  <script src="vendor/p5/p5.sound.js"></script>
+  <script src="js/freq-analyser.js"></script>
+  <script src="js/index.js"></script>
+</html>
