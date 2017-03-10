@@ -21,9 +21,8 @@ get("hat")
 set("snare", new track("snare"));
 get("snare")
     .tick(t => euclid(t, 3, 8))
-    .fx(pingpong())
-    .fx(reverb())
-    .fx(crush(4))
+    .fx.set("p", pingpong())
+    .fx.set("r", reverb())
+    .fx.set("c", crush(4))
     .rate(t => [10, 30, 5].choose())
     .gain(0.4);
-    

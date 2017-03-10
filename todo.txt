@@ -2,3 +2,4 @@ TODO: Friday 10 March
 =====================
 * Write Tutorial
 * settings tabs
+* dark mode

@@ -4,7 +4,7 @@
   padding: 0.5em 0.25em;
 }
 
-button {
+.topbar-button {
   background: transparent;
   border: none;
   outline: none;
@@ -34,4 +34,41 @@ button {
 #freq-analyser {
   display: inline-block;
   overflow: hidden;
+}
+
+#exec {
+  overflow: hidden;
+  transition: 1s ease-in-out;
+  transition-property: transform;
+}
+
+.exec-rotate {
+  -moz-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(-180deg);
+  -o-transform: rotate(-180deg);
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .25s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0
+}
+
+#settings-container {
+  padding: 1em 0;
+}
+
+select {
+  border: 1px solid #CCC;
+  border-radius: 0.4em;
+  margin-bottom: 1em;
+  padding: 0.25em 1em;
+  text-decoration: none;
+  color: rgb(76, 76, 76);
+}
+
+#font-size {
+  float: right;
 }

@@ -7,44 +7,63 @@
     <link rel="shortcut icon" href="img/logo.png">
     <link rel="apple-touch-icon" href="img/logo.png">
     <link href="/css/main.css" rel="stylesheet">
+    <link herf="/css/source-sans-pro.css" rel="stylesheet">
     <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/index.css" rel="stylesheet">
   </head>
   <body>
     <div id="app">
       <div id="topbar">
-        <button id="play" v-on:click="toggleRunning()">
-           <span v-if="!running"><i class="fa fa-play-circle" aria-hidden="true"></i></span>
-           <span v-if="running"><i class="fa fa-pause-circle" aria-hidden="true"></i></span>
+        <button class="topbar-button" id="play" v-on:click="toggleRunning()">
+           <span v-if="!running"><i class="fa fa-play-circle" aria-hidden="true" style="color: #35ad8c;"></i></span>
+           <span v-if="running"><i class="fa fa-pause-circle" aria-hidden="true" style="color: #ff28a5;"></i></span>
          </button>
 
-        <button id="exec" v-on:click="exec()" :disabled="running ? null : true">
+        <button class="topbar-button" id="exec" v-on:click="exec()" :disabled="running ? null : true">
           <i class="fa fa-refresh" aria-hidden="true"></i>
         </button>
 
-        <button id="save" v-on:click="saveFile()">
+        <button class="topbar-button" id="save" v-on:click="saveFile()">
           <i class="fa fa-floppy-o" aria-hidden="true"></i>
         </button>
 
-        <button id="open" v-on:click="load()">
+        <button class="topbar-button" id="open" v-on:click="load()">
           <i class="fa fa-folder-open-o" aria-hidden="true"></i>
         </button>
 
         <div id="freq-analyser"></div>
 
-        <button v-on:click="toggleSide()" id="settings" style="float:right;">
-          <i class="fa fa-sliders" aria-hidden="true"></i>
+        <button class="topbar-button" v-on:click="toggleSide()" id="settings" style="float:right;">
+          <i class="fa fa-bars" aria-hidden="true"></i>
         </button>
       </div>
 
-      <div v-if="showSide" id="sidebar">
-        <h2>SETTINGS</h2>
-      </div>
+      <transition name="fade">
+        <div v-if="showSide" id="sidebar">
+          <h2>Settings</h2>
+          <div id="settings-container">
+            Editor Font Size
+            <select id="font-size">
+              <option>Extra Small</option>
+              <option>Small</option>
+              <option>Regular</option>
+              <option>Large</option>
+              <option>Extra Large</option>
+            </select>
+          </div>
+          <div id="settings-footer">
+            <code align="center">
+              Written by Jesse Sibley<br>
+              @JesseSibley | Chickencoder
+            </code>
+          </div>
+        </div>
+      </transition>
 
       <div id="editor" @keyup.alt.82="exec()" @keyup.alt.83="stop()">// Cool kids write code.</div>
     </div>
 
-    <input type="file" id="file_load" style="display: none; visibility: hidden;">
+    <input type="file" id="file-load" style="display: none; visibility: hidden;">
     <input >
   </body>
   <script src="/vendor/harmonic/vendor/Tone.min.js"></script>

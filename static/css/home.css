@@ -6,6 +6,8 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  font-family: Ubuntu Mono, monospace;
 }
 
 #logo {
@@ -20,6 +22,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  font-size: 1.05em;
 }
 
 .button {
@@ -30,7 +33,7 @@
   margin-bottom: 1em;
   padding: 1em;
   text-decoration: none;
-  color: #111;
+  color: rgb(76, 76, 76);
 }
 
 .button:hover {
@@ -39,6 +42,8 @@
 }
 
 code {
+  display: block;
+  margin-top: 1em;
   font-size: 0.8em;
   background: #EEE;
   color: #444;

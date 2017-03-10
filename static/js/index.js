@@ -2,7 +2,9 @@
  * index.js
  */
 
-var file_load = document.getElementById("file_load");
+var FONTSIZE = 16;
+
+var file_load = document.getElementById("file-load");
 file_load.addEventListener("change", function(e) {
   var file = file_load.files[0];
   var reader = new FileReader();
@@ -10,8 +12,20 @@ file_load.addEventListener("change", function(e) {
     editor.setValue(this.result);
   }
   reader.readAsText(file);
-
 });
+
+var font_size = document.getElementById("font-size");
+font_size.addEventListener("change", function(e) {
+  console.log("HELLO");
+});
+
+function rotate_reload_button() {
+  var exec = document.getElementById("exec");
+  exec.setAttribute("class", "exec-rotate");
+  setTimeout(function() {
+    exec.removeAttribute("class", "exec-rotate");
+  }, 500);
+}
 
 new Vue({
   el: "#app",
@@ -39,15 +53,17 @@ new Vue({
       saveAs(blob, "my-cave-save-file.txt");
     },
     load: function() {
-      document.getElementById("file_load").click();
+      document.getElementById("file-load").click();
     },
     stop: function() {
+      this.running = false;
       Harmonic.stop();
     },
     exec: function() {
       // Are we already running? if not, make it so
       this.running = true;
       Harmonic.start();
+      rotate_reload_button();
 
       if (this.history.indexOf(editor.getValue()) == -1) {
         console.log(this.history);

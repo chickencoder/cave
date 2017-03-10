@@ -16,7 +16,7 @@
         <a class="button" href="/session">
           <span class="button-label">New Session</span>
         </a>
-        <a class="button" href="/">
+        <a class="button" onclick="document.getElementById('file-load').click();">
           <span class="button-label">Load Session</span>
         </a>
         <a class="button" href="/tutorial">
@@ -26,7 +26,28 @@
           <span class="button-label">Help</span>
         </div>
         <code>v2.3.2-Pre-Alpha</code>
+
+        <input type="file" id="file-load" style="display: none; visibility: hidden;">
       </div>
     </div>
+    <script>
+      var file_load = document.getElementById("file-load");
+      var file_content = "";
+      file_load.addEventListener("change", function(e) {
+        var file = file_load.files[0];
+        var reader = new FileReader();
+        reader.onload = function() {
+          file_content = reader.result;
+        }
+        reader.readAsText(file);
+      });
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "/session", true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(JSON.stringify({
+          value: file_content
+      }));
+    </script>
   </body>
 </html>
