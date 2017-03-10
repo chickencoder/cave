@@ -1,0 +1,29 @@
+set("can", new track("can"));
+get("can")
+    .tick(t => t % 2 == 0 || t % 5 == 2 ? 1 : 0)
+    .rate(t => [4, 5, 6].choose())
+    .gain(0.5);
+
+set("kick", new track("kick"));
+get("kick")
+    .tick(t => t % 4 == 0 ? 1 : 0);
+
+set("clap", new track("clap"));
+get("clap")
+    .tick(t => t % 4 == 0 ? 1 : 0)
+
+set("hat", new track("hat"));
+get("hat")
+    .tick(t => t % 8 == 0 ? 1 : 0)
+
+
+===============================================================================
+set("snare", new track("snare"));
+get("snare")
+    .tick(t => euclid(t, 3, 8))
+    .fx(pingpong())
+    .fx(reverb())
+    .fx(crush(4))
+    .rate(t => [10, 30, 5].choose())
+    .gain(0.4);
+    

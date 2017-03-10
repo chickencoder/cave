@@ -1,0 +1,46 @@
+#wrapper {
+  max-width: 758px;
+  margin: 0 auto;
+  margin-top: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#logo {
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  font-size: 4em;
+}
+
+#buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.button {
+  width: 60%;
+  min-width: 200px;
+  border: 1px solid #CCC;
+  border-radius: 0.4em;
+  margin-bottom: 1em;
+  padding: 1em;
+  text-decoration: none;
+  color: #111;
+}
+
+.button:hover {
+  background: #EEE;
+  cursor: pointer;
+}
+
+code {
+  font-size: 0.8em;
+  background: #EEE;
+  color: #444;
+  padding: 5px;
+}

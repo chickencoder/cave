@@ -2,41 +2,69 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Code Cave</title>
+    <title>Cave</title>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700" rel="stylesheet">
-    <link href="css/index.css" rel="stylesheet">
+    <link rel="shortcut icon" href="img/logo.png">
+    <link rel="apple-touch-icon" href="img/logo.png">
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/index.css" rel="stylesheet">
   </head>
   <body>
     <div id="app">
       <div id="topbar">
-
         <button id="play" v-on:click="toggleRunning()">
-           <span v-if="!running">Play</span>
-           <span v-if="running">Pause</span>
+           <span v-if="!running"><i class="fa fa-play-circle" aria-hidden="true"></i></span>
+           <span v-if="running"><i class="fa fa-pause-circle" aria-hidden="true"></i></span>
          </button>
 
-        <button id="exec" v-on:click="exec()" :disabled="running ? null : true">Execute</button>
-        <button id="save">Save</button>
-        <button id="open">Open</button>
-        <button id="load" v-on:click="load()">Load Samples</button>
+        <button id="exec" v-on:click="exec()" :disabled="running ? null : true">
+          <i class="fa fa-refresh" aria-hidden="true"></i>
+        </button>
+
+        <button id="save" v-on:click="saveFile()">
+          <i class="fa fa-floppy-o" aria-hidden="true"></i>
+        </button>
+
+        <button id="open" v-on:click="load()">
+          <i class="fa fa-folder-open-o" aria-hidden="true"></i>
+        </button>
+
         <div id="freq-analyser"></div>
 
-        <button v-on:click="toggleSide()" id="settings" style="float:right;">Settings</button>
+        <button v-on:click="toggleSide()" id="settings" style="float:right;">
+          <i class="fa fa-sliders" aria-hidden="true"></i>
+        </button>
       </div>
+
       <div v-if="showSide" id="sidebar">
-        <h2>Settings</h2>
+        <h2>SETTINGS</h2>
       </div>
-      <div id="editor"></div>
+
+      <div id="editor" @keyup.alt.82="exec()" @keyup.alt.83="stop()">// Cool kids write code.</div>
     </div>
 
-    <input type="file" id="file_load" multiple style="display: none; visibility: hidden;">
+    <input type="file" id="file_load" style="display: none; visibility: hidden;">
+    <input >
   </body>
-  <script src="vendor/ace/ace.js"></script>
-  <script src="vendor/ace/theme-tomorrow.js"></script>
-  <script src="vendor/ace/mode-javascript.js"></script>
-  <script src="vendor/vue.js"></script>
-  <script src="vendor/p5/p5.js"></script>
-  <script src="vendor/p5/p5.sound.js"></script>
-  <script src="js/freq-analyser.js"></script>
-  <script src="js/index.js"></script>
+  <script src="/vendor/harmonic/vendor/Tone.min.js"></script>
+  <script src="/vendor/harmonic/harmonic.util.js"></script>
+  <script src="/vendor/harmonic/harmonic.mixer.js"></script>
+  <script src="/vendor/harmonic/harmonic.fx.js"></script>
+  <script src="/vendor/harmonic/harmonic.track.js"></script>
+  <script src="/vendor/harmonic/harmonic.scheduler.js"></script>
+  <script src="/vendor/harmonic/harmonic.js"></script>
+  <script src="/js/sample-load.js"></script>
+
+  <script src="/vendor/FileSaver/FileSaver.min.js"></script>
+  <script src="/vendor/blob.js/blob.js"></script>
+
+  <script src="/vendor/ace/ace.js"></script>
+  <script src="/theme-breakfast.js"></script>
+  <script src="/vendor/ace/theme-tomorrow.js"></script>
+  <script src="/vendor/ace/mode-javascript.js"></script>
+  <script src="/vendor/vue.js"></script>
+  <!-- <script src="/vendor/p5/p5.js"></script> -->
+  <script src="/js/freq-analyser.js"></script>
+  <script src="/js/index.js"></script>
 </html>
