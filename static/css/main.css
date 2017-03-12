@@ -40,6 +40,11 @@
   overflow: hidden;
   transition: 1s ease-in-out;
   transition-property: transform;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 2rem;
+  color: rgb(76, 76, 76);
 }
 
 .exec-rotate {

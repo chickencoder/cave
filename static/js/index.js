@@ -21,7 +21,7 @@ font_size.addEventListener("change", function(e) {
 
 function rotate_reload_button() {
   var exec = document.getElementById("exec");
-  exec.setAttribute("class", "exec-rotate");
+  exec.setAttribute("class", "exec-rotate topbar-button");
   setTimeout(function() {
     exec.removeAttribute("class", "exec-rotate");
   }, 500);

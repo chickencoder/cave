@@ -5,3 +5,5 @@ Harmonic.load("/session/samples/clap.wav");
 Harmonic.load("/session/samples/can.wav");
 Harmonic.load("/session/samples/hat.wav");
 Harmonic.load("/session/samples/tom.wav");
+Harmonic.load("/session/samples/bass.wav");
+Harmonic.load("/session/samples/piano.wav");

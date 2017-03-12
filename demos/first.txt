@@ -26,3 +26,17 @@ get("snare")
     .fx.set("c", crush(4))
     .rate(t => [10, 30, 5].choose())
     .gain(0.4);
+=====================================
+set("piano", new track("piano"));
+get("piano")
+    .tick(t => every(t, 2))
+    .rate(t => [0, 3, 5].choose())
+
+set("kick", new track("kick"));
+get("kick")
+    .tick(t => euclid(t, 3, 8));
+
+set("can", new track("can"));
+get("can")
+    .tick(t => t % 12 == 2 || t % 12 == 3 ? 1 : 0)
+    .fx.set("p", pingpong());
