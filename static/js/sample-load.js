@@ -7,3 +7,6 @@ Harmonic.load("/session/samples/hat.wav");
 Harmonic.load("/session/samples/tom.wav");
 Harmonic.load("/session/samples/bass.wav");
 Harmonic.load("/session/samples/piano.wav");
+Harmonic.load("/session/samples/loop_oldfunk.wav");
+Harmonic.load("/session/samples/loop_absence.wav");
+Harmonic.load("/session/samples/loop_rightside.wav");

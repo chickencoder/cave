@@ -1,0 +1,3 @@
+oldfunk 85
+absence 90
+rightside 94.5

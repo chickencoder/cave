@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "docs": "markdown-html docs/tutorial.md -o tutorial.html"
   },
   "author": "",
   "license": "ISC",

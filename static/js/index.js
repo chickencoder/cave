@@ -2,8 +2,6 @@
  * index.js
  */
 
-var FONTSIZE = 16;
-
 var file_load = document.getElementById("file-load");
 file_load.addEventListener("change", function(e) {
   var file = file_load.files[0];
@@ -12,11 +10,6 @@ file_load.addEventListener("change", function(e) {
     editor.setValue(this.result);
   }
   reader.readAsText(file);
-});
-
-var font_size = document.getElementById("font-size");
-font_size.addEventListener("change", function(e) {
-  console.log("HELLO");
 });
 
 function rotate_reload_button() {
@@ -33,10 +26,34 @@ new Vue({
   data: {
     showSide: false,
     running: false,
-    history: []
+    history: [],
+    fontSize: 24
   },
 
   methods: {
+    changeFontSize: function() {
+      var select = document.getElementById("font-size");
+      console.log(select.value);
+      switch (select.value) {
+        case "Extra Small":
+          this.fontSize = 14;
+          break;
+        case "Small":
+          this.fontSize = 16;
+          break;
+        case "Regular":
+          this.fontSize = 18;
+          break;
+        case "Large":
+          this.fontSize = 20;
+          break;
+        case "Extra Large":
+          this.fontSize = 24;
+          break;
+      }
+      console.log(this.fontSize);
+      editor.setFontSize(this.fontSize);
+    },
     toggleSide: function() {
       this.showSide = !this.showSide;
     },

@@ -1,20 +1,101 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Tutorial</title>
+	<head>
+		<meta charset="utf-8" />
+		<title>Tutorial</title>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
     <link href="css/tutorial.css" rel="stylesheet">
-  </head>
-  <body>
-    <div id="wrapper">
-      <header>
-        <h1>Tutorial</h1>
-        <code>Official documentation for Code Cave 2.3.2</code>
-      </header>
-      <section>
-      </section>
-    </div>
-  </body>
+	</head>
+	<body>
+		<div id="wrapper">
+			<h1 id="tutorial">Tutorial</h1>
+			<code>Official documentation for Code Cave 2.3.2</code>
+		<h2 id="editor-basics">Editor basics</h2>
+		<p>When live coding it&#39;s best to know the quickest shortcuts for reptitive tasks
+		such as running/stopping code. As well as using the buttons along the top bar,
+		Cave comes with some keyboard shortcuts...</p>
+		<table>
+		<thead>
+		<tr>
+		<th style="text-align:left">Shortcut</th>
+		<th style="text-align:left">Mapped to</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+		<td style="text-align:left">Alt-r</td>
+		<td style="text-align:left">Run / Update code</td>
+		</tr>
+		<tr>
+		<td style="text-align:left">Alt-s</td>
+		<td style="text-align:left">Stop code</td>
+		</tr>
+		</tbody>
+		</table>
+		<h2 id="mixers-tracks">Mixers &amp; Tracks</h2>
+		<p>Tracks are the underlying building block of a Cave program. A track is given
+		a sample (sound file) and then can be sequenced to create rhythms, melodies etc. Mixers enable tracks to be grouped together and manipulated.</p>
+		<h2 id="creating-a-track">Creating a track</h2>
+		<pre><code class="lang-javascript">mix.set(&quot;kick_track&quot;, new track(&quot;kick&quot;));
+		</code></pre>
+		<p>The code above is an example of how we might create a track in Cave.
+		The <code>mix</code> object is a global pre-defined mixer than is routed to the main
+		audio output of your browser. Here we are setting up a new track within our
+		mixer with the id of <code>kick_track</code> which uses the <code>kick</code> sample from the default
+		sample pack.</p>
+		<p>Currently, this line of code won&#39;t produce any sound because we haven&#39;t told
+		Cave when to play this sample. This requires the following line of code...</p>
+		<pre><code class="lang-javascript">mix.get(&quot;kick_track&quot;).tick(t =&gt; every(t, 2));
+		</code></pre>
+		<p>This line gets our <code>kick_track</code> track from the mixer and then sequences it using
+		the <code>tick</code> method. Every track has a tick method which takes a single function
+		as an argument. For every tick of the program (equivalent to a 16th note), the
+		function passed in as an argument will be called. If the function returns 1, then
+		the sample is played. If the function returns 0, then the sample is not played.</p>
+		<p>The example given above uses the ES6 arrow function syntax which is equivalent
+		to the following older syntax....</p>
+		<pre><code class="lang-javascript">mix.get(&quot;kick_track&quot;).tick(function(t) {
+		    return every(t, 2);
+		});
+		</code></pre>
+		<p>If your browser supports arrow functions, it is suggested that you use them
+		for speed sake when live coding.</p>
+		<h2 id="t-is-for-ticks">T is for ticks</h2>
+		<p>The <code>t</code> argument taken in the callback method to our tick function is the global
+		tick count and represents how many ticks have been since the clock was started.
+		This value can be used to affect the result of the function, for instance, with
+		the modulus operator (%) and a ternary expression, we can return <code>1</code> every four ticks like so...</p>
+		<pre><code class="lang-javascript">mix.get(&quot;kick_track&quot;).tick(t =&gt; t % 4 == 0 ? 1 : 0)
+		</code></pre>
+		<p>This would produce the same result as...</p>
+		<pre><code class="lang-javascript">mix.get(&quot;kick_track&quot;).tick(function(t) {
+		  if (t % 4 == 0) {
+		    return 1;
+		  } else {
+		    return 2;
+		  }
+		});
+		</code></pre>
+		<p>To make the creation of tick callbacks easier, Cave provides 2 helper functions: <code>euclid</code> and <code>every</code>.</p>
+		<p>The <code>euclid</code> function produces a Euclidian Rhythm and the <code>every</code> function
+		will return 1 every given number of ticks.</p>
+		<pre><code class="lang-javascript">mix.get(&quot;kick_track&quot;).tick(t =&gt; euclid(t, 3, 8));
+		// and ...
+		mix.get(&quot;kick_track&quot;).tick(t =&gt; every(t, 2));
+		</code></pre>
+		<p><strong>Side note:</strong> It can get tiring writing <code>mix.get</code> multiple times so here are
+		two shortcuts. Firstly just use the global <code>get</code> and <code>set</code> functions instead of <code>mix.get</code> and <code>mix.set</code>. Secondly, if we call functions on a track, we can chain them like this...</p>
+		<pre><code class="lang-javascript">get(&quot;kick_track&quot;).tick(t =&gt; every(t, 2)).rate(0);
+		</code></pre>
+		<h2 id="die-tracks-">Die tracks!</h2>
+		<p>If you need to remove a track from the mixer, you can use the <code>mix.kill</code> method or use the global <code>kill</code> function.</p>
+		<h2 id="controlling-sample-pitch">Controlling sample pitch</h2>
+		<p>As well as triggering samples, we can change their pitch and rate with the <code>rate</code> method. The rate method takes a function (argument t), which returns the number of steps above the current rate the function should be played at.</p>
+		<pre><code class="lang-javascript">
+		</code></pre>
+		<h3 id="we-can-randomize-things">We can randomize things</h3>
+
+				</div>
+	</body>
 </html>
